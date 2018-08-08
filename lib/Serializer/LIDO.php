@@ -140,6 +140,25 @@ class LIDO implements SerializerInterface
             );
         }
 
+        // Frühere Besitzer
+        $besitzer = array();
+        foreach ($blatt->getPersonrolle() as $rolle) {
+            if ($rolle->getFunktion()->getEreignis() === 'Besitz') {
+                $besitzer []= $rolle;
+            }
+        }
+        if (!empty($besitzer)) {
+            $eventSet = $this->append($eventWrap, 'lido:eventSet');
+            $event = $this->append($eventSet, 'lido:event');
+            $this->append(
+                $this->append($event, 'lido:eventType'), 'lido:term', null, 'Erschaffung/Herstellung'
+            );
+            foreach ($besitzer as $rolle) {
+                    $this->serializeEventActor($event, $rolle);
+            }
+        }
+
+
         // Ausstellung
         if ($ausstellung = $blatt->getAusstellung()) {
             $eventSet = $this->append($eventWrap, 'lido:eventSet');
