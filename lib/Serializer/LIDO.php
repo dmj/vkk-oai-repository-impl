@@ -148,13 +148,13 @@ class LIDO implements SerializerInterface
             }
         }
         if (!empty($besitzer)) {
-            $eventSet = $this->append($eventWrap, 'lido:eventSet');
-            $event = $this->append($eventSet, 'lido:event');
-            $this->append(
-                $this->append($event, 'lido:eventType'), 'lido:term', null, 'Besitz'
-            );
             foreach ($besitzer as $rolle) {
-                    $this->serializeEventActor($event, $rolle);
+                $eventSet = $this->append($eventWrap, 'lido:eventSet');
+                $event = $this->append($eventSet, 'lido:event');
+                $this->append(
+                    $this->append($event, 'lido:eventType'), 'lido:term', null, 'Besitz'
+                );
+                $this->serializeEventActor($event, $rolle);
             }
         }
 
