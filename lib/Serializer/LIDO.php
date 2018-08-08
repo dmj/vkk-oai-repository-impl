@@ -143,7 +143,7 @@ class LIDO implements SerializerInterface
         // Frühere Besitzer
         $besitzer = array();
         foreach ($blatt->getPersonrolle() as $rolle) {
-            if ($rolle->getFunktion()->getEreignis() === 'Besitz') {
+            if ($rolle->getFunktion()->getEreignis() === 'Erschaffung') {
                 $besitzer []= $rolle;
             }
         }
@@ -151,7 +151,7 @@ class LIDO implements SerializerInterface
             $eventSet = $this->append($eventWrap, 'lido:eventSet');
             $event = $this->append($eventSet, 'lido:event');
             $this->append(
-                $this->append($event, 'lido:eventType'), 'lido:term', null, 'Erschaffung/Herstellung'
+                $this->append($event, 'lido:eventType'), 'lido:term', null, 'Besitz'
             );
             foreach ($besitzer as $rolle) {
                     $this->serializeEventActor($event, $rolle);
