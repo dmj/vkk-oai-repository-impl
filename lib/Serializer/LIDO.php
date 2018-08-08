@@ -143,7 +143,7 @@ class LIDO implements SerializerInterface
         // Frühere Besitzer
         $besitzer = array();
         foreach ($blatt->getPersonrolle() as $rolle) {
-            if ($rolle->getFunktion()->getEreignis() === 'Erschaffung') {
+            if ($rolle->getFunktion()->getEreignis() === 'Besitz') {
                 $besitzer []= $rolle;
             }
         }
