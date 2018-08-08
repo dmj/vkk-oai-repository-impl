@@ -1,0 +1,10 @@
+{
+    "name": "hab/vkk-oai-repository-impl",
+    "description": "Implementation of the Open Archives Initiative Protocol for Metadata Harvesting",
+    "license": "GPL-3.0-or-later",
+    "autoload": {
+        "psr-4": {
+	    "HAB\\VKK\\Service\\Export\\": "lib/"
+	}
+    }
+}
