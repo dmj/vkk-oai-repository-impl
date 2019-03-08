@@ -147,6 +147,13 @@ class Internal implements SerializerInterface
         }
         $this->writer->endElement();
 
+        $this->writer->startElement('sammlermarken');
+        $this->writer->writeAttribute('n', count($blatt->getSammlermarken()));
+        foreach ($blatt->getSammlermarken() as $sammlermarke) {
+            $this->sammlermarke($sammlermarke);
+        }
+        $this->writer->endElement();
+
         $this->masse('maß_platte', $blatt->getPlatteh(), $blatt->getPlattew(), $blatt->getDurchmesser());
         $this->masse('maß_blatt', $blatt->getBlatth(), $blatt->getBlattw(), $blatt->getDurchmesser());
 
@@ -259,6 +266,16 @@ class Internal implements SerializerInterface
             $this->literal('id', $kontext->getId());
             $this->literal('label', $kontext);
         }
+        $this->writer->endElement();
+    }
+
+    private function sammlermarke ($sammlermarke)
+    {
+        $this->writer->startElement('sammlermarke');
+        $this->literal('id', $sammlermarke->getId());
+        $this->literal('text', $sammlermarke->getText());
+        $this->literal('lugt', $sammlermarke->getLugt());
+        $this->literal('name', $sammlermarke->getName());
         $this->writer->endElement();
     }
 
